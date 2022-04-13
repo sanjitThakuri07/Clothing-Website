@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./routes/home/home";
 
 import Navigation from "./routes/navigation/navigation";
-import SignIn from "./routes/sign-in/sign-in";
+import Authentication from "./routes/authentication/authentication";
 import Shop from "./routes/shop/shop";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
       <Route path="/" element={<Navigation></Navigation>}>
         <Route index={true} element={<Home />} exact></Route>
         <Route path="shop" element={<Shop />} exact></Route>
-        <Route path="sign-in" element={<SignIn />} exact></Route>
+        <Route path="auth" element={<Authentication />} exact></Route>
       </Route>
     </Routes>
   );

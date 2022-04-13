@@ -17,7 +17,7 @@ const Links = [
   },
   {
     id: 3,
-    url: "/sign-in",
+    url: "/auth",
     name: "Sign In",
   },
 ];
