@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { getRedirectResult } from "firebase/auth";
+
+// import { UserContext } from "../../context/user.context";
 
 import {
   auth,
@@ -26,6 +28,8 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const { email, password } = formFields;
+
+  // const { setCurrentUser } = useContext(UserContext);
   // useEffect(async () => {
   //   const response = await getRedirectResult(auth);
   //   console.log(response);
@@ -36,7 +40,7 @@ const SignIn = () => {
 
   const logGoogleUser = async () => {
     const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    // setCurrentUser(user);
   };
 
   const resetFormFields = () => {
@@ -47,8 +51,9 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      const response = await signAuthUserWithEmailAndPassword(email, password);
-      console.log(response);
+      const { user } = await signAuthUserWithEmailAndPassword(email, password);
+      // setCurrentUser(user);
+
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -91,7 +96,7 @@ const SignIn = () => {
           value={password}
         />
         <div className="buttons-container">
-          <Button onClick={handleChange}>Sign In</Button>
+          <Button onClick={handleSubmit}>Sign In</Button>
           <Button onClick={logGoogleUser} buttonType="google" type="button">
             Google Sign In
           </Button>
