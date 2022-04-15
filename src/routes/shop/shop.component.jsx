@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import SHOP_DATA from "../../Raw/shop-data.json";
+// import SHOP_DATA from "../../Raw/shop-data.json";
 
 import { ProductContext } from "../../context/products.context";
 
