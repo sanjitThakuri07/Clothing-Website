@@ -15,7 +15,7 @@ import {
 
 import FormInput from "../form-input/FormInput";
 
-import Button from "../button/button";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button";
 
 import "./sign-in.styles.scss";
 
@@ -97,7 +97,11 @@ const SignIn = () => {
         />
         <div className="buttons-container">
           <Button onClick={handleSubmit}>Sign In</Button>
-          <Button onClick={logGoogleUser} buttonType="google" type="button">
+          <Button
+            onClick={logGoogleUser}
+            buttonType={BUTTON_TYPES_CLASSES.google}
+            type="button"
+          >
             Google Sign In
           </Button>
         </div>

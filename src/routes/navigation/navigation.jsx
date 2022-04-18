@@ -4,7 +4,12 @@ import { Outlet, Link } from "react-router-dom";
 import CartIcon from "../../components/cart-icon/CartIcon";
 import CartDropdown from "../../components/cart-dropdown/CartDropdown";
 
-import "./navigation.styles.scss";
+import {
+  NavigationContainer,
+  LogoContainer,
+  NavLinks,
+  NavLink,
+} from "./navigation.styles";
 
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 
@@ -36,33 +41,31 @@ const Navigation = () => {
   };
   return (
     <>
-      <div className="navigation">
-        <Link to="/" className="logo-container">
+      <NavigationContainer>
+        <LogoContainer to="/">
           <CrownLogo className="logo" />
-        </Link>
-        <div className="nav-links-container">
+        </LogoContainer>
+        <NavLinks>
           {Links.map((link) => (
-            <Link className="nav-link" to={link.url} key={link.id}>
+            <NavLink to={link.url} key={link.id}>
               {link.name}
-            </Link>
+            </NavLink>
           ))}
           {currentUser ? (
-            <span className="nav-link" onClick={signOutHandler}>
+            <NavLink as="span" onClick={signOutHandler}>
               Sign Out
-            </span>
+            </NavLink>
           ) : (
-            <Link className="nav-link" to="/auth">
-              Sign In
-            </Link>
+            <NavLink to="/auth">Sign In</NavLink>
           )}
           <CartIcon
             onClick={() => {
               setIsCartOpen(!isCartOpen);
             }}
           ></CartIcon>
-        </div>
+        </NavLinks>
         {isCartOpen && <CartDropdown></CartDropdown>}
-      </div>
+      </NavigationContainer>
       <Outlet></Outlet>
     </>
   );

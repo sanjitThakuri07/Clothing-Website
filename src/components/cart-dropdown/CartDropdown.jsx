@@ -8,21 +8,29 @@ import CartItem from "../cart-item/cart-item";
 
 import { CartContext } from "../../context/cart.context";
 
-import "./cart-dropdown.styles.scss";
+import {
+  CartDropdownContainer,
+  EmptyMessage,
+  CartItems,
+} from "./cart-dropdown.styles";
 
 const CartDropdown = () => {
   let history = useNavigate();
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div className="cart-dropdown-container">
-      <div className="cart-items">
-        {cartItems.map((item) => {
-          return <CartItem cartItem={item} key={item.id}></CartItem>;
-        })}
-      </div>
+    <CartDropdownContainer>
+      <CartItems>
+        {cartItems.length ? (
+          cartItems.map((item) => {
+            return <CartItem key={item.id} cartItem={item}></CartItem>;
+          })
+        ) : (
+          <EmptyMessage>Cart is empty</EmptyMessage>
+        )}
+      </CartItems>
       <Button onClick={() => history("/checkout")}>Go To Checkout</Button>
-    </div>
+    </CartDropdownContainer>
   );
 };
 

@@ -1,18 +1,20 @@
 import React from "react";
 
-import "../category-item/categories.styles.scss";
+import { CategoriesContainer } from "../directory-item/directoryitem.styles";
 
-import CategoryItem from "../category-item/category-item";
+import DirectoryItem from "../directory-item/directory-item";
 
-const Directory = ({ categories = [] }) => {
+import categories from "../../Raw/categories.json";
+
+const Directory = () => {
   return (
-    <div className="categories-container">
+    <CategoriesContainer>
       {categories.map((category) => {
         return (
-          <CategoryItem key={category.id} category={category}></CategoryItem>
+          <DirectoryItem key={category.id} category={category}></DirectoryItem>
         );
       })}
-    </div>
+    </CategoriesContainer>
   );
 };
 
